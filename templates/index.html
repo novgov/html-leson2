@@ -7,11 +7,14 @@
     <link rel="stylesheet" href="../static/main.css">
 </head>
 <body>
+    <!-- Шапка сайта -->
     <header>
         <img src="../static/img/logo.jpg">
     </header>
+    <!-- Класс основного контента -->
     <div class="page-content">
     <main>
+        <!-- секция с основной информацией о студенте  -->
         <section class="profile">
             <img src="../static/img/ava.jpg" alt="Фотография">
             <div class="info">
@@ -20,6 +23,7 @@
                 <p>Великий Новгород</p>
             </div>
         </section>
+        <!-- секция с образованием -->
         <section class="education">
             <h2>Образование</h2>
             <div class="edublock">
@@ -32,6 +36,17 @@
                 <p> Год окончания: 2025</p>
                 <a href="https://www.novsu.ru/"> https://www.novsu.ru/ </a>
             </div>
+            <div class="edublock">
+                <p>НЕТОЛОГИЯ</p>
+                <p>ВЭБ разработчик Django</p>
+                <p>Год окончания : 2023</p>
+                <a href="https://netology.ru/">https://netology.ru/</a>
+            </div>
+            <div class="edublock">
+                <p>Школа 21 (Сбер)</p>
+                <p>Разрабоичик программного обеспечения</p>
+                <a href="https://21-school.ru/">https://21-school.ru/</a>
+            </div>
         </section>
         <section class="projects">
             <h2>Проекты</h2>
@@ -39,12 +54,12 @@
                 <div class="carousel-item">
                     <img src="../static/img/kjno.jpg">
                     <div class="carousel-content">
-                    <p>Проект карта жителя Новгородской области</p>
+                    <p>Проект Карта жителя Новгородской области</p>
                     <p>Компетенции:</p>
                     <p>-Agile</p>
                     <p>-Проектирование бизнес логики</p>
                     <p>-Публичные выступления</p>
-                    <button href="http://cit.novreg.ru/KJNO">Подробнее</button>
+                    <a href="http://cit.novreg.ru/KJNO" target="_blank" class="button-link">Подробнее</a>
                 </div>
                     
                 </div>
@@ -53,6 +68,9 @@
             </div>
             <button id="prev">←</button>
             <button id="next">→</button>
+        </section>
+        <section class="contact">
+
         </section>
     </main>
 </div>
