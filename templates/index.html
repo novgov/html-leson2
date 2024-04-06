@@ -63,11 +63,15 @@
                 </div>
                     
                 </div>
-                <div class="carousel-item">Проект 2</div>
-                <div class="carousel-item">Проект 3</div>
+                <div class="carousel-item">
+                    <h2>Thunkable</h2>
+                </div>
+                <div class="carousel-item">
+                    <h2>Construct</h2>
+                </div>
             </div>
-            <button id="prev">←</button>
-            <button id="next">→</button>
+            <button id="prev">Назад</button>
+            <button id="next">Вперед</button>
         </section>
         <section class="contact">
 
@@ -77,6 +81,22 @@
     <footer>
         <p>© 2024 Все права защищены</p>
     </footer>
-    <script src="../script/script.js"></script>
+
+
+
+
+
+
+
+
+    <script>
+    document.getElementById('prev').addEventListener('click', () => {
+    document.querySelector('.carousel').scrollBy(-1000, 0);
+});
+    document.getElementById('next').addEventListener('click', () => {
+    document.querySelector('.carousel').scrollBy(1000, 0);
+});
+
+    </script>
 </body>
 </html>
