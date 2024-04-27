@@ -1,19 +1,6 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Визитка</title>
-    <link rel="stylesheet" href="../static/main.css">
-</head>
-<body>
-    <!-- Шапка сайта -->
-    <header>
-        <img src="../static/img/logo.jpg">
-    </header>
-    <!-- Класс основного контента -->
-    <div class="page-content">
-    <main>
+{% extends 'base.html' %}
+{%block title%} Владимир Сергеевич {%endblock%}
+{% block content %}
         <!-- секция с основной информацией о студенте  -->
         <section class="profile">
             <img src="../static/img/ava.jpg" alt="Фотография">
@@ -76,27 +63,4 @@
         <section class="contact">
 
         </section>
-    </main>
-</div>
-    <footer>
-        <p>© 2024 Все права защищены</p>
-    </footer>
-
-
-
-
-
-
-
-
-    <script>
-    document.getElementById('prev').addEventListener('click', () => {
-    document.querySelector('.carousel').scrollBy(-1000, 0);
-});
-    document.getElementById('next').addEventListener('click', () => {
-    document.querySelector('.carousel').scrollBy(1000, 0);
-});
-
-    </script>
-</body>
-</html>
+        {%endblock%}
