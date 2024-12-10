@@ -1,8 +1,7 @@
 import os
 
 from flask import Flask, render_template, redirect, request, Response
-from extensions import db
-from models import User, Education
+from models import User, Education, Contact, db
 from werkzeug.utils import secure_filename
 
 secret_key = os.urandom(32)
@@ -57,7 +56,7 @@ def create_user_and_education():
         return render_template("create.html")
 
 
-@app.route("/<int:id>")
+@app.route("/img/<int:id>")
 def get_img(id):
     pic = User.query.filter_by(id=id).first()
     if not pic:
@@ -65,7 +64,7 @@ def get_img(id):
 
     return Response(pic.pic, mimetype=pic.mimetype)
 
-@app.route("/profile/<int:id>")
+@app.route("/<int:id>")
 def posts_detail(id):
     user = User.query.get(id)
     educations = user.education.all() if user else None

@@ -3,16 +3,16 @@
 {% block content %}
 <h2>Добавление пользователя и образования</h2>
 
-<form method="POST" class = "form-control" enctype="multipart/form-data">
-        <input type = "text" name = "name" placeholder="Введите ФИО" class = "form-control"> <br>
-        <input type = "text" name = "age" placeholder="Введите возраст" class = "form-control"> <br>
-        <input type = "text" name = "city" placeholder="Город" class = "form-control"> <br>
-        <input type = "text" name = "education_institution" placeholder="Место обучения" class = "form-control"> <br>
-        <input type = "text" name = "graduation_year" placeholder="Год окончания" class = "form-control"> <br>
-        <input type = "text" name = "link" placeholder="Ссылка" class = "form-control"> <br>
-        <form action="/" enctype="multipart/form-data" method="post">
-            <input type="file" name="pic" />
-            <input class="btn btn-success" type = "submit"/>
-            </form>
+<form method="POST" class = "form-control" enctype="multipart/form-data" required>
+<input type = "text" name = "name" placeholder="Введите ФИО" class = "form-control" required> <br>
+<input type = "text" name = "age" placeholder="Введите возраст" class = "form-control" required> <br>
+<input type = "text" name = "city" placeholder="Город" class = "form-control" required> <br>
+<input type = "text" name = "education_institution" placeholder="Место обучения" class = "form-control"required> <br>
+<input type = "text" name = "graduation_year" placeholder="Год окончания" class = "form-control"required> <br>
+<input type = "text" name = "link" placeholder="Ссылка" class = "form-control"required> <br>
+    <form action="/" enctype="multipart/form-data" method="post">
+    <input type="file" name="pic" />
+    <button type = "submit">Отправить</button>
     </form>
+</form>
         {%endblock%}
