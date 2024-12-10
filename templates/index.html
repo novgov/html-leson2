@@ -1,40 +1,30 @@
 {% extends 'base.html' %}
-{%block title%} Владимир Сергеевич {%endblock%}
+{% block title %}{{ user.name }} {% endblock %}
 {% block content %}
         <!-- секция с основной информацией о студенте  -->
         <section class="profile">
-            <img src="../static/img/ava.jpeg" alt="Фотография">
+            <img src="/{{user.id}}" alt="Фотография">
             <div class="info">
-                <h2>{user.name}</h2>
-                <p>{user.age}</p>
-                <p>{user.city}</p>
-            </div>
+            <h2>{{ user.name }}</h2>
+            <p>Возраст: {{ user.age }}</p>
+            <p>Город: {{ user.city }}</p>
+        </div>
         </section>
         <!-- секция с образованием -->
         <section class="education">
-            <h2>Образование</h2>
-            <div class="edublock">
-            <p>РАНХиГС</p>
-            <p>Год окончания: 2022</p>
-            <a href="https://www.ranepa.ru/?utm_source=yandex.ru&utm_medium=organic&utm_campaign=yandex.ru&utm_referrer=yandex.ru">https://www.ranepa.ru/</a>
-            </div>
-            <div class="edublock">
-                <p>НОВГУ (Информатика и вычислительная техника)</p>
-                <p> Год окончания: 2024</p>
-                <a href="https://www.novsu.ru/"> https://www.novsu.ru/ </a>
-            </div>
-            <div class="edublock">
-                <p>НЕТОЛОГИЯ</p>
-                <p>ВЭБ разработчик Django</p>
-                <p>Год окончания : 2023</p>
-                <a href="https://netology.ru/">https://netology.ru/</a>
-            </div>
-            <div class="edublock">
-                <p>Школа 21 (Сбер)</p>
-                <p>Разрабоичик программного обеспечения</p>
-                <a href="https://21-school.ru/">https://21-school.ru/</a>
-            </div>
-        </section>
+        <h2>Образование</h2>
+        {% if user.education %}
+            {% for education in user.education %}
+                <div class="edublock">
+                    <p>{{ education.institution }}</p>
+                    <p>Год окончания: {{ education.graduation_year }}</p>
+                    <a href="{{ education.link }}" target="_blank">Подробнее</a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Информация о образовании отсутствует.</p>
+        {% endif %}
+    </section>
         <section class="projects">
             <h2>Проекты</h2>
             <div class="carousel">
