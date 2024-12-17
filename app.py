@@ -68,15 +68,17 @@ def get_img(id):
 @app.route("/profile/<int:id>")
 def posts_detail(id):
     user = User.query.get(id)
+    users = User.query.all()
     educations = user.education.all() if user else None
-    return render_template('index.html', user=user, educations=educations)
+    return render_template('index.html', user=user, educations=educations, users=users)
 
 
 @app.route("/")
 def index():
     user = User.query.first()
+    users = User.query.all()
     educations = user.education.all() if user else None
-    return render_template('index.html', user=user, educations=educations)
+    return render_template('index.html', user=user, educations=educations, users=users)
 
 
 if __name__ == "__main__":

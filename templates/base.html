@@ -10,6 +10,12 @@
     <!-- Шапка сайта -->
     <header>
         <img src="../static/img/logo.jpg">
+        <select name="select" class="select">
+            <option>Выберите пользователя..</option>
+            {% for user in users %}
+            <option value="/profile/{{ user.id }}">{{ user.name }}</option>
+            {% endfor %}
+        </select>
     </header>
     <!-- Класс основного контента -->
     <div class="page-content">
@@ -20,7 +26,12 @@
     <footer>
         <p>© 2024 Все права защищены</p>
     </footer>
-
+    <script>
+        const select = document.querySelector("select");
+        select.addEventListener("change", function() {
+            window.location.href = select.value
+        })
+    </script>
 
 
 
