@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}{{ user.name }} {% endblock %}
+{% block content %}
+<h1>Создание нового проекта</h1>
+<form method="POST" class = "form-control" enctype="multipart/form-data">
+    <label for="project_name">Название проекта:</label><br>
+    <input type="text" id="project_name" name="project_name" required><br>
+
+    <label for="project_description">Описание проекта:</label><br>
+    <textarea id="project_description" name="project_description" required></textarea><br>
+
+    <label for="project_link">Ссылка на проект:</label><br>
+    <input type="url" id="project_link" name="project_link" required><br>
+
+    <label for="pic">Изображение проекта:</label><br>
+    <input type="file" id="pic" name="pic" accept="image/*" required><br>
+
+    <input type="submit" value="Создать проект">
+</form>
+{%endblock%}

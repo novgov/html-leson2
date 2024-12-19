@@ -2,7 +2,7 @@ import os
 
 from flask import Flask, render_template, redirect, request, Response
 from extensions import db
-from models import User, Education
+from models import User, Education, Project
 from werkzeug.utils import secure_filename
 
 secret_key = os.urandom(32)
@@ -65,12 +65,39 @@ def get_img(id):
 
     return Response(pic.pic, mimetype=pic.mimetype)
 
+
 @app.route("/profile/<int:id>")
-def posts_detail(id):
+def profile(id):
     user = User.query.get(id)
     users = User.query.all()
     educations = user.education.all() if user else None
     return render_template('index.html', user=user, educations=educations, users=users)
+
+
+@app.route("/profile/<int:user_id>/project", methods=["GET", "POST"])
+def add_project(user_id):
+    user = User.query.get(user_id)
+    if request.method == "POST":
+        project_name = request.form["project_name"]
+        project_description = request.form["project_description"]
+        project_link = request.form["project_link"]
+        pic = request.files["pic"]
+        filename = secure_filename(pic.filename)
+        mimetype = pic.mimetype
+        new_project = Project(
+            project_name=project_name,
+            project_description=project_description,
+            project_link=project_link,
+            pic=pic.read(),
+            filename=filename,
+            mimetype=mimetype,
+            user=user
+        )
+        db.session.add(new_project)
+        db.session.commit()
+        return redirect("/")
+    else:
+        return render_template('add_project.html', user=user)
 
 
 @app.route("/")
