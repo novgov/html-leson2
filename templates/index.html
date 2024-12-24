@@ -3,12 +3,21 @@
 {% block content %}
         <!-- секция с основной информацией о студенте  -->
         <section class="profile">
+            {% if user %}
             <img src="/img/{{user.id}}" alt="Фотография">
             <div class="info">
             <h2>{{ user.name }}</h2>
             <p>Возраст: {{ user.age }}</p>
             <p>Город: {{ user.city }}</p>
         </div>
+            {% else %}
+            <img src="../static/img/dog.png" alt="Фотография">
+            <div class="info">
+            <h2>Не найден</h2>
+            <p>Возраст: Нет</p>
+            <p>Город: Нет</p>
+        </div>
+            {% endif %}
         </section>
         <!-- секция с образованием -->
         <section class="education">
@@ -55,6 +64,14 @@
             <button id="next">Вперед</button>
         </section>
         <section class="contact">
-
+        {% if user.contact %}
+            {% for cont in user.contact %}
+            <p>Номер телефона: {{cont.phone}} </p>
+            <p>Telegram: {{ cont.tg }}</p>
+            {% endfor %}
+        {% else %}
+            <p>Номер телефона: Нет </p>
+            <p>Telegram: Нет</p>
+        {% endif %}
         </section>
         {%endblock%}
