@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}{{ user.name }} {% endblock %}
 {% block content %}
+{% if user %}
         <!-- секция с основной информацией о студенте  -->
         <section class="profile">
             {% if user %}
@@ -33,7 +34,10 @@
         {% else %}
             <p>Информация о образовании отсутствует.</p>
         {% endif %}
-    </section>
+  {% if user %}
+  <a href="/{{user.id}}/education" class="button-link">Добавить образование</a>
+  {% endif %}
+        </section>
         <section class="projects">
             <h2>Проекты</h2>
             <div class="carousel">
@@ -74,4 +78,9 @@
             <p>Telegram: Нет</p>
         {% endif %}
         </section>
+{% else %}
+<section class="profile">
+<a href="/create" class="button-link">Добавить пользователя</a>
+    </section>
+{% endif %}
         {%endblock%}

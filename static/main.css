@@ -105,7 +105,7 @@ header, footer {
     margin-bottom: 20px; /* Добавлено для создания пространства между описанием и кнопкой */
 }
 
-.carousel-content .button-link{
+.button-link{
     display: inline-block;
     padding: 10px 20px;
     color: #fff;
@@ -116,8 +116,13 @@ header, footer {
     margin-top: 10px;
 }
 
-.carousel-content .button-link:hover {
+.button-link:hover {
     background-color: #4e5863;
+    padding: 10px 22px;
+}
+
+.education .button-link {
+width: 180px;
 }
 
 button {
@@ -131,8 +136,8 @@ button {
 
 button:hover {
     background-color: #1a4067;
+    padding: 10px 22px;
 }
-
 
 .edublock {
     padding: 10px;
@@ -145,7 +150,7 @@ button:hover {
 form {
     max-width: 50vw;
     margin: 0 auto;
-    padding: 20px;
+    padding: 40px 20px;
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1)
@@ -165,6 +170,7 @@ input[type="text"]{
 
 header img {
     width: 90px;
+    margin-left: 10em;
 }
 
 select{
@@ -180,3 +186,9 @@ select{
 select option {
     background-color: #1c52bb;
 }
+
+.profile .button-link {
+margin-left: 30vw;
+width: 180px;
+}
+
