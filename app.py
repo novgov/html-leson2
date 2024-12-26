@@ -1,7 +1,7 @@
 import os
 
 from flask import Flask, render_template, redirect, request, Response
-from models import User, Education, Contact, db
+from models import User, Education, Contact, db, Project
 from werkzeug.utils import secure_filename
 
 secret_key = os.urandom(32)
@@ -57,13 +57,26 @@ def get_img(id):
 
     return Response(pic.pic, mimetype=pic.mimetype)
 
+
+@app.route("/project/<int:user_id>/img/<int:prj_id>")
+def prj_img(user_id, prj_id):
+    user = User.query.get(user_id)
+    pic = user.project.filter_by(id=prj_id).first()
+    if not pic:
+        return 'Нет изображения с таким id', 404
+
+    return Response(pic.pic, mimetype=pic.mimetype)
+
+
 @app.route("/<int:id>")
 def profile(id):
     user = User.query.get(id)
     users = User.query.all()
     contact = user.contact.all() if user else None
     educations = user.education.all() if user else None
-    return render_template('index.html', users=users, user=user, educations=educations, contact=contact)
+    projects = user.project.all() if user else None
+    return render_template('index.html', users=users, user=user, educations=educations, contact=contact,
+                           projects=projects)
 
 
 @app.route("/")
@@ -72,7 +85,9 @@ def index():
     users = User.query.all()
     educations = user.education.all() if user else None
     contact = user.contact.all() if user else None
-    return render_template('index.html', users=users, user=user, educations=educations, contact=contact)
+    projects = user.project.all() if user else None
+    return render_template('index.html', users=users, user=user, educations=educations, contact=contact,
+                           projects=projects)
 
 @app.route("/<int:id>/education", methods=["GET", "POST"])
 def add_education(id):
@@ -90,6 +105,28 @@ def add_education(id):
             return f'При добавлении поста произошла ошибка: {error}'
     else:
         return render_template("education.html")
+
+
+@app.route("/<int:id>/project", methods=["GET", "POST"])
+def add_project(id):
+    user = User.query.get(id)
+    if request.method == "POST":
+        pic = request.files["pic"]
+        project = Project(name=request.form['name'],
+                          description=request.form["description"],
+                          link=request.form["link"],
+                          pic=pic.read(),
+                          mimetype=pic.mimetype,
+                          filename=secure_filename(pic.filename),
+                          user=user)
+        try:
+            db.session.add(project)
+            db.session.commit()
+            return redirect("/")
+        except Exception as error:
+            return f'При добавлении поста произошла ошибка: {error}'
+    else:
+        return render_template("project.html")
 
 
 if __name__ == "__main__":

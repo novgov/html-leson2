@@ -41,32 +41,35 @@
         <section class="projects">
             <h2>Проекты</h2>
             <div class="carousel">
+                {% if projects %}
+                {% for project in projects %}
                 <div class="carousel-item">
-                    <img src="../static/img/ozon.png">
+                    <img src="/project/{{ user.id }}/img/{{ project.id }}">
                     <div class="carousel-content">
-                    <p>Ozon tech (Отдел Курьерской доставки)</p>
-                    <p>Компетенции:</p>
-                    <p>-Python3</p>
-                    <p>-Kafka</p>
-                    <p>-SQL</p>
-                    <a href="https://ozon.tech/" target="_blank" class="button-link">Подробнее</a>
+                    <p>Название {{ project.name }}</p>
+                    <p>Описание:</p>
+                    <p>{{ project.description }}</p>
+                    <a href="{{ project.link }}" target="_blank" class="button-link">Подробнее</a>
                 </div>
                 </div>
-                <div class="carousel-item">
-                    <img src="../static/img/kjno.jpg">
-                    <div class="carousel-content">
-                    <p>Проект Карта жителя Новгородской области</p>
-                    <p>Компетенции:</p>
-                    <p>-Agile</p>
-                    <p>-Проектирование бизнес логики</p>
-                    <p>-Публичные выступления</p>
-                    <a href="http://cit.novreg.ru/KJNO" target="_blank" class="button-link">Подробнее</a>
-                </div>
-                </div>
+                {% endfor %}
+                {% else %}
+                <h3>Проектов пока нет</h3>
+                {% endif %}
+                  {% if user %}
+                  {% endif %}
+                {% if not projects %}
+                <a href="/{{user.id}}/project" class="button-link">Добавить проект</a>
+                {% endif %}
             </div>
+            {% if projects %}
             <button id="prev">Назад</button>
             <button id="next">Вперед</button>
+            <a href="/{{user.id}}/project" class="button-link">Добавить проект</a>
+            {% endif %}
+
         </section>
+
         <section class="contact">
         {% if user.contact %}
             {% for cont in user.contact %}
